@@ -1,4 +1,7 @@
 import PropTypes from "prop-types";
+
+// import bookMarkImg from ''
+
 const Blog = ({ blog, handelAddBookMark, markId, handelMarkAsRead }) => {
   const {
     cover,
@@ -30,12 +33,14 @@ const Blog = ({ blog, handelAddBookMark, markId, handelMarkAsRead }) => {
           <p className="text-xl font-medium text-[#949494]">
             {reading_time} min read
           </p>
-          <img
-            onClick={() => handelAddBookMark(blog)}
-            className="cursor-pointer"
-            src={`/src/assets/images/read-${marked ? "fill" : "empty"}.svg`}
-            alt=""
-          />
+          <span>
+            <i
+              className={`fa-${
+                marked ? "solid" : "regular"
+              } text-xl fa-bookmark cursor-pointer`}
+              onClick={() => handelAddBookMark(blog)}
+            ></i>
+          </span>
         </div>
       </div>
       <h1 className="text-[40px] font-bold">{title}</h1>
