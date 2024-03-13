@@ -1,19 +1,33 @@
-const Blog = () => {
+import PropTypes from "prop-types";
+const Blog = ({ blog }) => {
+  const {
+    cover,
+    author_img,
+    hashtags,
+    id,
+    posted_date,
+    reading_time,
+    title,
+    author,
+  } = blog;
+
   return (
-    <div className="space-y-6 border-b-2 pb-7">
-      <img className="rounded-lg" src="/src/assets/images/2.png" alt="" />
+    <div className="space-y-6 border-b-2 pb-7 mb-12">
+      <img className="rounded-lg w-full" src={cover} alt="" />
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-6">
-          <img className="w-12" src="/src/assets/images/boy1.png" alt="" />
+          <img className="w-12" src={author_img} alt="" />
           <div>
-            <h3 className="font-bold text-2xl">Mr.Raju</h3>
+            <h3 className="font-bold text-2xl">{author}</h3>
             <p className="text-base font-semibold text-[#949494]">
-              Mar 14 (4 Days ago)
+              {posted_date}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <p className="text-xl font-medium text-[#949494]">05 min read</p>
+          <p className="text-xl font-medium text-[#949494]">
+            {reading_time} min read
+          </p>
           <img
             className="cursor-pointer"
             src="/src/assets/images/read.svg"
@@ -21,18 +35,19 @@ const Blog = () => {
           />
         </div>
       </div>
-      <h1 className="text-[40px] font-bold">
-        How to get your first job as a self- <br />
-        taught programmer
-      </h1>
+      <h1 className="text-[40px] font-bold">{title}</h1>
       <p className="flex items-center gap-6 text-[#949494] text-xl font-medium">
-        <span>#beginners</span> <span>#programming</span>
+        <span>#{hashtags[0]}</span> <span>#{hashtags[1]}</span>
       </p>
       <strong className="inline-block border-b-2 text-[#8875F1] cursor-pointer text-xl font-semibold">
         Mark as read
       </strong>
     </div>
   );
+};
+
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
 };
 
 export default Blog;
