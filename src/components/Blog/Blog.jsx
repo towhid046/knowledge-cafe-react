@@ -33,18 +33,16 @@ const Blog = ({ blog, handelAddBookMark, markId, handelMarkAsRead }) => {
           <img
             onClick={() => handelAddBookMark(blog)}
             className="cursor-pointer"
-            src={
-              marked
-                ? "/src/assets/images/read-fill.svg"
-                : "/src/assets/images/read-empty.svg"
-            }
+            src={`/src/assets/images/read-${marked ? "fill" : "empty"}.svg`}
             alt=""
           />
         </div>
       </div>
       <h1 className="text-[40px] font-bold">{title}</h1>
       <p className="flex items-center gap-6 text-[#949494] text-xl font-medium">
-        <span>#{hashtags[0]}</span> <span>#{hashtags[1]}</span>
+        {hashtags.map((hash, index) => (
+          <span key={index}>#{hash}</span>
+        ))}
       </p>
       <strong
         onClick={() => marked && handelMarkAsRead(blog)}
