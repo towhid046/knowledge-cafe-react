@@ -30,7 +30,6 @@ const Blogs = ({ handelAddBookMark, markId, handelMarkAsRead }) => {
 };
 
 Blogs.propTypes = {
-  blogs: PropTypes.arrayOf(PropTypes.object).isRequired,
   handelAddBookMark: PropTypes.func.isRequired,
   handelMarkAsRead: PropTypes.func.isRequired,
   markId: PropTypes.arrayOf(PropTypes.number).isRequired,

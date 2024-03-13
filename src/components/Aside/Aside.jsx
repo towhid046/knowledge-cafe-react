@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
+import Marked from "../Marked/Marked";
 
 const Aside = ({ bookmarkItems, readTime }) => {
-
-
   return (
     <div className="lg:min-w-[460px]">
       <header className="border-2 mb-6 border-[#8875F1] bg-[#efecfd] rounded-xl px-16 py-5">
@@ -16,13 +15,10 @@ const Aside = ({ bookmarkItems, readTime }) => {
           Bookmarked Blogs : {bookmarkItems.length}
         </h2>
 
-        {bookmarkItems.map((item) => (
-          <>
-            <div key={item.id} className="p-5 rounded-xl bg-white">
-              <h3 className="font-semibold text-lg">{item?.title}</h3>
-            </div>
-          </>
+        {bookmarkItems.map((marked) => (
+          <Marked key={marked.id} marked={marked} />
         ))}
+        
       </div>
     </div>
   );

@@ -7,7 +7,6 @@ const Main = () => {
   const [readTime, setReadTime] = useState(0);
   const [markId, setMarkId] = useState([]);
 
-
   const handelAddBookMark = (blog) => {
     const targetedItem = bookmarkItems.find((item) => item.id === blog.id);
     if (targetedItem) {
