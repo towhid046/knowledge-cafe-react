@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const Blog = ({ blog }) => {
+const Blog = ({ blog, handelBookMark, markId }) => {
   const {
     cover,
     author_img,
@@ -10,6 +10,7 @@ const Blog = ({ blog }) => {
     title,
     author,
   } = blog;
+
 
   return (
     <div className="space-y-6 border-b-2 pb-7 mb-12">
@@ -29,8 +30,13 @@ const Blog = ({ blog }) => {
             {reading_time} min read
           </p>
           <img
+            onClick={() => handelBookMark(blog)}
             className="cursor-pointer"
-            src="/src/assets/images/read.svg"
+            src={
+              markId.find((mId) => mId === id)
+                ? "/src/assets/images/read-fill.svg"
+                : "/src/assets/images/read-empty.svg"
+            }
             alt=""
           />
         </div>
@@ -48,6 +54,8 @@ const Blog = ({ blog }) => {
 
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
+  handelBookMark: PropTypes.func.isRequired,
+  markId: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default Blog;
