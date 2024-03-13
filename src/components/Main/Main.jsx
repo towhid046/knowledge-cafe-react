@@ -8,7 +8,6 @@ const Main = () => {
   const [readTime, setReadTime] = useState(0);
   const [markId, setMarkId] = useState([]);
 
-
   useEffect(() => {
     const loadData = async () => {
       const res = await fetch("blogs.json");
@@ -19,9 +18,14 @@ const Main = () => {
   }, []);
 
   const handelBookMark = (blog) => {
-    setBookmarkItems([...bookmarkItems, blog]);
-    setReadTime(r=> r + blog.reading_time);
-    setMarkId([...markId, blog.id])
+    const targetedItem = bookmarkItems.find((item) => item.id === blog.id);
+    if (targetedItem) {
+      alert("Blog already Marked!");
+    } else {
+      setBookmarkItems([...bookmarkItems, blog]);
+      setReadTime((r) => r + blog.reading_time);
+      setMarkId([...markId, blog.id]);
+    }
   };
 
   return (
