@@ -50,7 +50,7 @@ const Blog = ({ blog, handelAddBookMark, markId, handelMarkAsRead }) => {
         ))}
       </p>
       <strong
-        onClick={() => marked && handelMarkAsRead(blog)}
+        onClick={() => handelMarkAsRead(blog)}
         className="inline-block border-b-2 text-[#8875F1] cursor-pointer text-xl font-semibold"
       >
         Mark as read
