@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import Blog from "../Blog/Blog";
-const Blogs = ({ blogs, handelBookMark, markId }) => {
+const Blogs = ({ blogs, handelAddBookMark, markId, handelMarkAsRead }) => {
   return (
     <div>
       {blogs.map((blog) => (
         <Blog
           key={blog.id}
           blog={blog}
-          handelBookMark={handelBookMark}
+          handelAddBookMark={handelAddBookMark}
+          handelMarkAsRead={handelMarkAsRead}
           markId={markId}
         />
       ))}
@@ -17,7 +18,8 @@ const Blogs = ({ blogs, handelBookMark, markId }) => {
 
 Blogs.propTypes = {
   blogs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handelBookMark: PropTypes.func.isRequired,
+  handelAddBookMark: PropTypes.func.isRequired,
+  handelMarkAsRead: PropTypes.func.isRequired,
   markId: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 

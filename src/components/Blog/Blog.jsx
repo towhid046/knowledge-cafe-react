@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const Blog = ({ blog, handelBookMark, markId }) => {
+const Blog = ({ blog, handelAddBookMark, markId, handelMarkAsRead }) => {
   const {
     cover,
     author_img,
@@ -11,6 +11,7 @@ const Blog = ({ blog, handelBookMark, markId }) => {
     author,
   } = blog;
 
+  const marked = markId.find((mId) => mId === id);
 
   return (
     <div className="space-y-6 border-b-2 pb-7 mb-12">
@@ -30,10 +31,10 @@ const Blog = ({ blog, handelBookMark, markId }) => {
             {reading_time} min read
           </p>
           <img
-            onClick={() => handelBookMark(blog)}
+            onClick={() => handelAddBookMark(blog)}
             className="cursor-pointer"
             src={
-              markId.find((mId) => mId === id)
+              marked
                 ? "/src/assets/images/read-fill.svg"
                 : "/src/assets/images/read-empty.svg"
             }
@@ -45,7 +46,10 @@ const Blog = ({ blog, handelBookMark, markId }) => {
       <p className="flex items-center gap-6 text-[#949494] text-xl font-medium">
         <span>#{hashtags[0]}</span> <span>#{hashtags[1]}</span>
       </p>
-      <strong className="inline-block border-b-2 text-[#8875F1] cursor-pointer text-xl font-semibold">
+      <strong
+        onClick={() => marked && handelMarkAsRead(blog)}
+        className="inline-block border-b-2 text-[#8875F1] cursor-pointer text-xl font-semibold"
+      >
         Mark as read
       </strong>
     </div>
@@ -54,7 +58,8 @@ const Blog = ({ blog, handelBookMark, markId }) => {
 
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
-  handelBookMark: PropTypes.func.isRequired,
+  handelAddBookMark: PropTypes.func.isRequired,
+  handelMarkAsRead: PropTypes.func.isRequired,
   markId: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
